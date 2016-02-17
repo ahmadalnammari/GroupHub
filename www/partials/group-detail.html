@@ -1,0 +1,52 @@
+
+
+
+
+<div class="topcoat-navigation-bar">
+    <div class="topcoat-navigation-bar__item left">
+       
+         <a class="topcoat-icon-button--quiet back-button" href="" ng-click="back()">
+            <span class="topcoat-icon topcoat-icon--back"></span>
+         </a>
+        
+    </div>
+    <div class="topcoat-navigation-bar__item left">
+        
+         <div class="group-top-bar">
+            <img ng-src="pics/john_williams.jpg" class="avatar">
+            <h1 class="topcoat-navigation-bar__title">{{group.name}}</h1>
+        </div>
+    </div>
+    
+    <div class="topcoat-navigation-bar__item right">
+        
+    <div class="drawer drawer--right drawer--navbarTopGutter" >
+<header role="banner">
+    <button type="button" class="drawer-toggle drawer-hamburger">
+      <span class="sr-only">toggle navigation</span>
+      <span class="drawer-hamburger-icon"></span>
+    </button>
+    <nav class="drawer-nav" role="navigation">
+      <ul class="drawer-menu">
+        <li><a class="drawer-brand" href="#">Brand</a></li>
+        <li><a class="drawer-menu-item" href="#">Nav1</a></li>
+        <li><a class="drawer-menu-item" href="#">Nav2</a></li>
+      </ul>
+    </nav>
+  </header>
+        </div>
+</div>
+</div>
+
+
+<div class='details'>
+    <ul class="horizontal-list members-list">
+        <li ng-repeat="member in members" >
+            <a ng-click="goToDetail(group)">
+                <img ng-src="pics/john_williams.jpg" class="avatar">
+                <p>{{member.name}}</p>
+            </a>
+        </li>
+    </ul>
+</div>
+
