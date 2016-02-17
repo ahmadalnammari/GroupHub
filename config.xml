@@ -36,10 +36,6 @@
   <gap:plugin name="org.apache.cordova.network-information"/>
   <gap:plugin name="org.apache.cordova.splashscreen"/>
   <gap:plugin name="org.apache.cordova.vibration"/>
-  <gap:plugin name="com.phonegap.plugins.facebookconnect" version="<VERSION>">
-        <param name="APP_ID" value="<YOUR_APP_ID>" />
-        <param name="APP_NAME" value="<YOUR_APP_NAME>" />
-  </gap:plugin>
 
   <icon src="icon.png"/>
   <icon src="www/res/icon/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi"/>
