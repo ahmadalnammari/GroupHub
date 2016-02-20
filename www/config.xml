@@ -4,7 +4,7 @@
         <param name="APP_ID" value="1570241279927313" />
         <param name="APP_NAME" value="aroundhere" />
   </gap:plugin>
-    <access origin="*" subdomains="true">
+  <access origin="*" subdomains="true"/>
 
 </widget>
 
