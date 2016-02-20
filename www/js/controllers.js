@@ -12,8 +12,9 @@ angular.module('myApp.controllers', [])
           $location.url(path);
         }
     }])
-    .controller('LoginCtrl', ['$scope', function ($scope) {
+    .controller('LoginCtrl', ['$scope','$log', function ($scope,$log) {
         
+
     }])
     .controller('MyGroupsCtrl', ['$scope', '$rootScope','$window', '$location', '$routeParams', '$http', function ($scope, $rootScope, $window, $location, $routeParams, $http) {
         
