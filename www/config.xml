@@ -1,8 +1,10 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.grouphub" version="1.0.0">
   <allow-navigation href="http://*/*" />
-  <gap:plugin name="com.phonegap.plugins.facebookconnect" spec="0.4.0" source="pgb">
+  <gap:plugin name="com.phonegap.plugins.facebookconnect"  source="pgb">
         <param name="APP_ID" value="1570241279927313" />
         <param name="APP_NAME" value="aroundhere" />
   </gap:plugin>
+    <access origin="*" subdomains="true"/>
+
 </widget>
 
