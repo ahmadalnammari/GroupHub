@@ -54,7 +54,7 @@
         
 		<script>
              <!-- These are the notifications that are displayed to the user through pop-ups if the above JS files does not exist in the same directory-->
-            if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
+           /* if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
             if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
             if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
             
@@ -74,10 +74,10 @@
                                alert('auth.statusChange event');
                                });
             
-            /*function getSession() {
+            function getSession() {
                 alert("session: " + JSON.stringify(FB.getSession()));
             }
-            */
+            
             function getLoginStatus() {
                 FB.getLoginStatus(function(response) {
                                   if (response.status == 'connected') {
@@ -171,17 +171,23 @@
 					FB.ui(params, function(obj) { console.log(obj);});
 			    }
 			}
+            */
+            document.addEventListener('deviceready', initApp, false);
             
-            document.addEventListener('deviceready', function() {
-                                      try {
-                                      alert('Device is ready! Make sure you set your app_id below this alert.');
-									  //Put your FB APP_ID here!
-                                      FB.init({ appId: "1570241279927313", nativeInterface: CDV.FB, useCachedDialogs: false });
-                                      document.getElementById('data').innerHTML = "";
-                                      } catch (e) {
-                                      alert(e);
-                                      }
-                                      }, false);
+            
+            var fbLoginSuccess = function (userData) 
+{
+    alert("UserInfo: " + JSON.stringify(userData));
+}
+
+function initApp()
+{
+    facebookConnectPlugin.login(["public_profile"],
+        fbLoginSuccess,
+        function (error) { alert("" + error) }
+    );
+}
+            
             </script>
         <div id="log"></div>
 

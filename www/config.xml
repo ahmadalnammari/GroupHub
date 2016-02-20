@@ -4,12 +4,7 @@
         <param name="APP_ID" value="1570241279927313" />
         <param name="APP_NAME" value="aroundhere" />
   </gap:plugin>
-
-<access origin="https://m.facebook.com" subdomains="true"/>
-<access origin="https://graph.facebook.com" subdomains="true"/>
-<access origin="https://api.facebook.com" subdomains="true"/>
-<access origin="https://*.fbcdn.net" subdomains="true"/>
-<access origin="https://*.akamaihd.net" subdomains="true"/>
+    <access origin="*" subdomains="true">
 
 </widget>
 
