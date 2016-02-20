@@ -2,7 +2,7 @@
   <allow-navigation href="http://*/*" />
   <gap:plugin name="com.phonegap.plugins.facebookconnect" spec="0.4.0" source="pgb">
         <param name="APP_ID" value="1570241279927313" />
-        <param name="APP_NAME" value="AroundHere" />
+        <param name="APP_NAME" value="aroundhere" />
   </gap:plugin>
 </widget>
 
