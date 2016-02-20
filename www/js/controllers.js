@@ -14,6 +14,19 @@ angular.module('myApp.controllers', [])
     }])
     .controller('LoginCtrl', ['$scope','$log', function ($scope,$log) {
         
+        $scope.faceBookLogin = function(){
+            
+            facebookConnectPlugin.login(["public_profile"],
+        fbLoginSuccess,
+        function (error) { alert(JSON.stringify(error)) }
+         );
+            
+            $scope.fbLoginSuccess = function (userData) 
+            {
+    alert("fbLoginSuccess");
+    alert("UserInfo: " + JSON.stringify(userData));
+           }
+        }
 
     }])
     .controller('MyGroupsCtrl', ['$scope', '$rootScope','$window', '$location', '$routeParams', '$http', function ($scope, $rootScope, $window, $location, $routeParams, $http) {
