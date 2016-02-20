@@ -28,9 +28,9 @@
             <!-- cordova -->
 		<script src="cordova.js"></script>
 	    <!-- cordova facebook plugin -->
-		<script src="cdv-plugin-fb-connect.js"></script>
+		<script src="lib/cdv-plugin-fb-connect.js"></script>
 	    <!-- facebook js sdk -->
-		<script src="facebook-js-sdk.js"></script>
+		<script src="lib/facebook-js-sdk.js"></script>
     
 </head>
 
@@ -176,7 +176,7 @@
                                       try {
                                       alert('Device is ready! Make sure you set your app_id below this alert.');
 									  //Put your FB APP_ID here!
-                                      FB.init({ appId: "APP_ID", nativeInterface: CDV.FB, useCachedDialogs: false });
+                                      FB.init({ appId: "1570241279927313", nativeInterface: CDV.FB, useCachedDialogs: false });
                                       document.getElementById('data').innerHTML = "";
                                       } catch (e) {
                                       alert(e);
