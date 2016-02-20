@@ -185,7 +185,7 @@ function initApp()
 {
     facebookConnectPlugin.login(["public_profile"],
         fbLoginSuccess,
-        function (error) { alert("test" + error) }
+        function (error) { alert(JSON.stringify(error)) }
     );
 }
             
