@@ -17,15 +17,14 @@ angular.module('myApp.controllers', [])
         $scope.faceBookLogin = function(){
             
             facebookConnectPlugin.login(["public_profile"],
-        fbLoginSuccess,
-        function (error) { alert(JSON.stringify(error)) }
-         );
-            
-            $scope.fbLoginSuccess = function (userData) 
+        function (userData) 
             {
     alert("fbLoginSuccess");
     alert("UserInfo: " + JSON.stringify(userData));
-           }
+           },
+        function (error) { alert(JSON.stringify(error)) }
+         );
+            
         }
 
     }])
