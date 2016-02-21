@@ -26,7 +26,7 @@ angular.module('myApp.controllers', [])
                     alert("Could not get access token: " + err);
                  });
                 
-                facebookConnectPlugin.api("/me", function(response) {
+                facebookConnectPlugin.api("/me", [], function(response) {
                     
                    alert("Good to see you, " + JSON.stringify(response));
                     
