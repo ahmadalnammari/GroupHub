@@ -12,7 +12,7 @@ angular.module('myApp.controllers', [])
           $location.url(path);
         }
     }])
-    .controller('LoginCtrl', ['$scope', function ($scope) {
+    .controller('LoginCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
         
         $scope.faceBookLogin = function(){
             
@@ -22,7 +22,8 @@ angular.module('myApp.controllers', [])
     alert("fbLoginSuccess");
     alert("UserInfo: " + JSON.stringify(userData));
                 facebookConnectPlugin.api("/me", function(response) {
-       console.log('Good to see you, ' + JSON.stringify(response)+ '.');
+       alert('Good to see you, ' + JSON.stringify(response)+ '.');
+                   $rootScope.go("partials/my-groups.html");
      });
            },
         function (error) { alert(JSON.stringify(error)) }
