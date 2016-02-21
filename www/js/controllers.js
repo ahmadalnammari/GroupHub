@@ -30,7 +30,7 @@ angular.module('myApp.controllers', [])
                     
                    alert("Good to see you, " + JSON.stringify(response));
                     
-                   $rootScope.go("partials/my-groups.html");
+                   $rootScope.go("/mygroups/3C3FA386-FE16-4935-9C2A-0A139B18401F");
                 }, function(err) {
                     alert("Could not get my details: " + err);
                  });
