@@ -19,12 +19,28 @@ angular.module('myApp.controllers', [])
             facebookConnectPlugin.login(["public_profile"],
         function (userData) 
             {
-    alert("fbLoginSuccess");
-    alert("UserInfo: " + JSON.stringify(userData));
+                
+                facebookConnectPlugin.getAccessToken(function(token) {
+                    alert("Token: " + token);
+                    }, function(err) {
+                    alert("Could not get access token: " + err);
+                 });
+                
                 facebookConnectPlugin.api("/me", function(response) {
-       alert('Good to see you, ' + JSON.stringify(response)+ '.');
+                    
+                   alert("Good to see you, " + JSON.stringify(response));
+                    
                    $rootScope.go("partials/my-groups.html");
-     });
+                }, function(err) {
+                    alert("Could not get my details: " + err);
+                 });
+                
+                
+                
+                
+                
+                 alert("fbLoginSuccess");
+                 alert("UserInfo: " + JSON.stringify(userData));
            },
         function (error) { alert(JSON.stringify(error)) }
          );
