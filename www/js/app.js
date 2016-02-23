@@ -15,7 +15,20 @@ config(['$routeProvider', function ($routeProvider) {
     $routeProvider.otherwise({redirectTo: '/login'});
 }]).run(['$rootScope', '$window', 
   function($rootScope, $window) {
-console.log("dsfs");
+    
+      
+      $.ajaxSetup({
+    beforeSend: function(xhr) {
+        var accessToken = $window.localStorage.getItem("access-token");
+        var loginType = $window.localStorage.getItem("login-type");
+        if(accessToken && loginType){
+        xhr.setRequestHeader("access-token", accessToken);
+        xhr.setRequestHeader("login-type", loginType));
+    }}
+});
+      
+      
+/*console.log("dsfs");
   $rootScope.user = {};
 
   $window.fbAsyncInit = function() {
@@ -23,11 +36,7 @@ console.log("dsfs");
 
     FB.init({ 
 
-      /* 
-       The app id of the web app;
-       To register a new app visit Facebook App Dashboard
-       ( https://developers.facebook.com/apps/ ) 
-      */
+
 
       appId: '1570241279927313', 
 
@@ -60,6 +69,6 @@ console.log("dsfs");
 
     ref.parentNode.insertBefore(js, ref);
 
-  }(document));
+  }(document));*/
 
 }]);

@@ -12,9 +12,10 @@ angular.module('myApp.controllers', [])
           $location.url(path);
         }
     }])
-    .controller('LoginCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+    .controller('LoginCtrl', ['$scope', '$rootScope', '$window', function ($scope, $rootScope, $window) {
         
         $scope.faceBookLogin = function(){
+            
             
             facebookConnectPlugin.login(["public_profile"],
         function (userData) 
@@ -22,15 +23,26 @@ angular.module('myApp.controllers', [])
                 
                 facebookConnectPlugin.getAccessToken(function(token) {
                     alert("Token: " + token);
+                    
+                    $window.localStorage.setItem("access-token", token);
+                    $window.localStorage.setItem("login-type", 'Facebook');
+                    
+                    console.log(token);
+                    
+                    alert("access-token: " + $window.localStorage.getItem("access-token"));
+                    alert("login-type: " + $window.localStorage.getItem("login-type"));
+                    
                     }, function(err) {
+                    
                     alert("Could not get access token: " + err);
+
                  });
                 
                 facebookConnectPlugin.api("/me", [], function(response) {
                     
                    alert("Good to see you, " + JSON.stringify(response));
                     
-                   $rootScope.go("/mygroups/3C3FA386-FE16-4935-9C2A-0A139B18401F");
+                   
                 }, function(err) {
                     alert("Could not get my details: " + err);
                  });
@@ -44,6 +56,8 @@ angular.module('myApp.controllers', [])
            },
         function (error) { alert(JSON.stringify(error)) }
          );
+            
+            
             
         }
 
