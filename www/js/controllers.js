@@ -14,9 +14,11 @@ angular.module('myApp.controllers', [])
     }])
     .controller('LoginCtrl', ['$scope', '$rootScope', '$window', function ($scope, $rootScope, $window) {
         
+        
         $scope.faceBookLogin = function(){
             
-            
+                            console.log("token");
+    
             facebookConnectPlugin.login(["public_profile"],
         function (userData) 
             {
