@@ -23,7 +23,7 @@ config(['$routeProvider', function ($routeProvider) {
         var loginType = $window.localStorage.getItem("login-type");
         if(accessToken && loginType){
         xhr.setRequestHeader("access-token", accessToken);
-        xhr.setRequestHeader("login-type", loginType));
+        xhr.setRequestHeader("login-type", loginType);
     }}
 });
       
