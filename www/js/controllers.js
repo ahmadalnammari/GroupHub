@@ -12,7 +12,7 @@ angular.module('myApp.controllers', [])
           $location.url(path);
         }
     }])
-    .controller('LoginCtrl', ['$scope', '$rootScope', '$window', function ($scope, $rootScope, $window) {
+    .controller('LoginCtrl', ['$scope', '$rootScope', '$window', '$http', function ($scope, $rootScope, $window, $http) {
         
         
         $scope.faceBookLogin = function(){
