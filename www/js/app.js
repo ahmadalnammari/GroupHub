@@ -19,10 +19,10 @@ config(['$routeProvider', function ($routeProvider) {
       
       $.ajaxSetup({
     beforeSend: function(xhr) {
-        var accessToken = $window.localStorage.getItem("access-token");
+        var accessToken = $window.localStorage.getItem("fb-access-token");
         var loginType = $window.localStorage.getItem("login-type");
         if(accessToken && loginType){
-        xhr.setRequestHeader("access-token", accessToken);
+        xhr.setRequestHeader("fb-access-token", accessToken);
         xhr.setRequestHeader("login-type", loginType);
     }}
 });

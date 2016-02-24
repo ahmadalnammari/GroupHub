@@ -17,7 +17,7 @@ angular.module('myApp.controllers', [])
         
         $scope.faceBookLogin = function(){
             
-                            console.log("token");
+                            
     
             facebookConnectPlugin.login(["public_profile"],
         function (userData) 
@@ -26,12 +26,25 @@ angular.module('myApp.controllers', [])
                 facebookConnectPlugin.getAccessToken(function(token) {
                     alert("Token: " + token);
                     
-                    $window.localStorage.setItem("access-token", token);
-                    $window.localStorage.setItem("login-type", 'Facebook');
                     
-                    console.log(token);
+                    //login in grouphub system
+                    $http.get('http://192.168.1.7:2016/api/User.FacebookLogin?accessToken='+ token)
+                         .then(function(response){ 
+                            
+                            if(response.data && !response.data.isError){
+                                
+                              $window.localStorage.setItem("user", response.data);
+                              $window.localStorage.setItem("fb-access-token", token);
+                              $window.localStorage.setItem("login-type", 'Facebook');
+                                
+                            }
+                    });
                     
-                    alert("access-token: " + $window.localStorage.getItem("access-token"));
+          
+                    
+                   
+                    
+                    alert("access-token: " + $window.localStorage.getItem("fb-access-token"));
                     alert("login-type: " + $window.localStorage.getItem("login-type"));
                     
                     }, function(err) {
@@ -40,21 +53,8 @@ angular.module('myApp.controllers', [])
 
                  });
                 
-                facebookConnectPlugin.api("/me", [], function(response) {
-                    
-                   alert("Good to see you, " + JSON.stringify(response));
-                    
-                   
-                }, function(err) {
-                    alert("Could not get my details: " + err);
-                 });
-                
-                
-                
-                
-                
-                 alert("fbLoginSuccess");
                  alert("UserInfo: " + JSON.stringify(userData));
+                
            },
         function (error) { alert(JSON.stringify(error)) }
          );
