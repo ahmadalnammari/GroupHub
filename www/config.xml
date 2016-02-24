@@ -5,6 +5,6 @@
         <param name="APP_NAME" value="aroundhere" />
   </gap:plugin>
   <access origin="*" subdomains="true"/>
-
+  <access origin="192.168.1.7" subdomains="true"/> 
 </widget>
 
