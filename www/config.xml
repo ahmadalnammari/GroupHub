@@ -4,8 +4,7 @@
         <param name="APP_ID" value="1570241279927313" />
         <param name="APP_NAME" value="aroundhere" />
   </gap:plugin>
-    <gap:plugin name="cordova-plugin-whitelist"  source="pgb">
-    </gap:plugin>
+  <gap:plugin name="cordova-plugin-whitelist" source="npm" />
   <access origin="*" subdomains="true"/>
   <access origin="192.168.1.7:2016" subdomains="true"/> 
 </widget>
