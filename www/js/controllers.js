@@ -28,7 +28,7 @@ angular.module('myApp.controllers', [])
                     
                     
                     //login in grouphub system
-                    $http.get('http://192.168.1.7:2016/api/User.FacebookLogin?accessToken='+ token)
+                    $http.post('http://192.168.1.7:2016/api/User.FacebookLogin', token )
                          .then(function(response){ 
                             
                             alert("response: " + JSON.stringify(response.data));
@@ -40,7 +40,8 @@ angular.module('myApp.controllers', [])
                               $window.localStorage.setItem("login-type", 'Facebook');
                                 
                             }
-                    });
+                    },
+                              function (error) { alert(JSON.stringify(error)) });
                     
           
                     
