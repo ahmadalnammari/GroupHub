@@ -15,7 +15,24 @@ angular.module('myApp.controllers', [])
     .controller('LoginCtrl', ['$scope', '$rootScope', '$window', '$http', function ($scope, $rootScope, $window, $http) {
         
         
+                                        $http.get('http://192.168.1.7:2016/api/User.FacebookLogin?accessToken='+token )
+                         .then(function(response){ 
+                            
+                            alert("response: " + JSON.stringify(response.data));
+                        
+                            if(response.data && !response.data.isError){
+                                
+                              $window.localStorage.setItem("user", response.data);
+                              $window.localStorage.setItem("fb-access-token", token);
+                              $window.localStorage.setItem("login-type", 'Facebook');
+                                
+                            }
+                    },
+                              function (error) { alert(JSON.stringify(error)) });
+        
+        
         $scope.faceBookLogin = function(){
+            
             
                             
     
