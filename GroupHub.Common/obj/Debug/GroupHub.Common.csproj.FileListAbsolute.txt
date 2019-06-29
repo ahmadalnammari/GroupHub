@@ -1,9 +1,0 @@
-C:\GroupHubProject\GroupHub.Common\bin\Debug\GroupHub.Common.dll
-C:\GroupHubProject\GroupHub.Common\bin\Debug\GroupHub.Common.pdb
-C:\GroupHubProject\GroupHub.Common\obj\Debug\GroupHub.Common.dll
-C:\GroupHubProject\GroupHub.Common\obj\Debug\GroupHub.Common.pdb
-C:\GroupHubProjects\GroupHub\GroupHub.Common\bin\Debug\GroupHub.Common.dll
-C:\GroupHubProjects\GroupHub\GroupHub.Common\bin\Debug\GroupHub.Common.pdb
-C:\GroupHubProjects\GroupHub\GroupHub.Common\obj\Debug\GroupHub.Common.csprojResolveAssemblyReference.cache
-C:\GroupHubProjects\GroupHub\GroupHub.Common\obj\Debug\GroupHub.Common.dll
-C:\GroupHubProjects\GroupHub\GroupHub.Common\obj\Debug\GroupHub.Common.pdb
