@@ -8,5 +8,6 @@ namespace GroupHub.Core.Services
     public interface ISvcSecurity : ISvc
     {
         User Authenticate(string email, string password);
+        void Register(User user);
     }
 }

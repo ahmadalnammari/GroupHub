@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GroupHub.Infra;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,8 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 
 namespace GroupHub.API
 {
@@ -34,9 +36,21 @@ namespace GroupHub.API
         {
             services.RegisterApplicationServices(Configuration);
 
+            services.AddControllers();
+
+
+            //services.AddAuthorization(options =>
+            //{
+            //    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+            //      .RequireAuthenticatedUser()
+            //      .Build();
+            //});
 
             services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+
+
+
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
@@ -51,45 +65,40 @@ namespace GroupHub.API
         };
     });
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll",
-                    builder =>
-                    {
-                        builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials();
-                    });
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAll",
+            //        builder =>
+            //        {
+            //            builder
+            //            .AllowAnyOrigin()
+            //            .AllowAnyMethod()
+            //            .AllowAnyHeader()
+            //            .AllowCredentials();
+            //        });
+            //});
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddEntityFrameworkNpgsql()
-                .AddDbContext<GroupHubContext>()
-                .BuildServiceProvider();
+           // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
 
             if (HostingEnvironment.IsDevelopment())
             {
                 services.AddSwaggerGen(c =>
                 {
-                    c.SwaggerDoc("v1", new Info { Title = "GroupHub.API", Version = "V1" });
-                    var security = new Dictionary<string, IEnumerable<string>>
-                {
-                    {"Bearer", new string[] { }},
-                };
-                    c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                    c.SwaggerDoc("v1", new OpenApiInfo
                     {
-                        Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                        Name = "Authorization",
-                        In = "header",
-                        Type = "apiKey"
+                        Title = "GroupHub.API",
+                        Version = "V1"
                     });
 
-                    c.AddSecurityRequirement(security);
+                    //c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                    //{
+                    //    Description = "JWT Authorization header using the Bearer scheme. Example - Authorization: Bearer {token}",
+                    //    Name = "Authorization",
+                    //    In = "header",
+                    //    Type = "apiKey"
+                    //});
                 });
 
             }
@@ -99,8 +108,11 @@ namespace GroupHub.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            var logger = loggerFactory.CreateLogger("App startup");
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -114,9 +126,21 @@ namespace GroupHub.API
 
 
             app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseMvc();
 
+            app.UseStaticFiles();
+
+            app.UseRouting();
+            app.UseCors();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            //app.MigrateDatabaseUponAppStart(logger);
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapDefaultControllerRoute();
+            });
         }
     }
 }

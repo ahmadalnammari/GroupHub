@@ -6,6 +6,8 @@ using GroupHub.Infra.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Threading.Tasks;
 using static GroupHub.Core.Util;
 
 namespace GroupHub.API.Controllers
@@ -27,17 +29,17 @@ namespace GroupHub.API.Controllers
 
 
         [HttpPost("register")]
-        public void Register([FromBody]UserRegistrationDTO userDTO)
+        public async Task<User> Register([FromBody]UserRegistrationDTO userDTO)
         {
             var hashedPassword = Crypto.getHashSha256(userDTO.Password);
 
             User user = new User();
-            user.FirstName = userDTO.FirstName;
-            user.LastName = userDTO.LastName;
             user.Email = userDTO.Email;
             user.HashedPassword = hashedPassword;
 
-            SvcUser.Add(user);
+            await SvcUser.Add(user);
+
+            return user;
         }
 
 
