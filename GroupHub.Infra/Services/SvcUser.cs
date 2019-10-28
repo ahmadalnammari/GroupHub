@@ -5,28 +5,24 @@ using GroupHub.Infra.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GroupHub.Infra.Services
 {
-    public class SvcUser : Svc, ISvcUser
+    public class SvcUser : SvcBase<User>, ISvcUser
     {
 
-        public SvcUser() : base()
+        public SvcUser(GroupHubContext context) : base(context)
         {
 
         }
         
 
-        public User Add(User user)
+        public async Task<User> Add(User user)
         {
 
-            using (var db = new GroupHubContext())
-            {
-                db.Users.Add(user);
-                
-                db.SaveChanges();
-            }
-
+            await context.Users.AddAsync(user);
+            await context.SaveChangesAsync();
             return user;
         }
 

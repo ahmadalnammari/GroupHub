@@ -8,13 +8,25 @@ using System.Linq;
 
 namespace GroupHub.Infra.Services
 {
-    public class SvcSecurity : Svc, ISvcSecurity
+    public class SvcSecurity : SvcBase<User>, ISvcSecurity
     {
+        public SvcSecurity(GroupHubContext context) : base(context)
+        {
+        }
 
-        public SvcSecurity() : base()
+
+        public void Register(User user)
         {
 
+            using (var db = new GroupHubContext())
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
+
         }
+
+
 
         public User Authenticate(string email, string hashedPassword)
         {
@@ -29,7 +41,7 @@ namespace GroupHub.Infra.Services
 
             return user;
         }
-        
-        
+
+
     }
 }
